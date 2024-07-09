@@ -78,7 +78,12 @@ public class EditProfile extends AppCompatActivity {
         boolean isUpdated = databaseHelper.updateUserData(currentUsername, newNickname, newUsername, newPassword);
         if (isUpdated) {
             Toast.makeText(EditProfile.this, "Profile updated successfully!", Toast.LENGTH_SHORT).show();
-            currentUsername = newUsername; // Update currentUsername if username changed
+
+            // Start UserProfile activity
+            Intent intent = new Intent(EditProfile.this, UserProfile.class);
+            intent.putExtra("username", newUsername); // Pass the updated username
+            startActivity(intent);
+            finish(); // Finish current activity to prevent going back to it on back press
         } else {
             Toast.makeText(EditProfile.this, "Profile update failed!", Toast.LENGTH_SHORT).show();
         }

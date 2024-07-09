@@ -7,20 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class UserProfile extends AppCompatActivity {
     TextView textViewNickname, textViewUsername, textViewPassword;
     DatabaseHelper databaseHelper;
     String currentUsername;
-    String currentNickname;
-    String currentPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userprofile);
-
 
         // Initialize DatabaseHelper
         databaseHelper = new DatabaseHelper(this);
@@ -32,21 +28,45 @@ public class UserProfile extends AppCompatActivity {
 
         // Get the username passed from the previous activity
         currentUsername = getIntent().getStringExtra("username");
-        currentNickname = getIntent().getStringExtra("nickname");
-        currentPassword = getIntent().getStringExtra("password");
 
+        // Call method to display user details
+        displayUserDetails(currentUsername);
 
+        // Setup EditProfileButton click listener
         Button EditProfileButton = findViewById(R.id.EditProfileButton);
         EditProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(UserProfile.this, EditProfile.class);
-                intent.putExtra("username", currentUsername); // Pass the username to UserProfile
+                intent.putExtra("username", currentUsername);
                 startActivity(intent);
             }
         });
 
-
+        // Setup EditProfileButton click listener
+        Button LogoutButton = findViewById(R.id.LogoutButton);
+        LogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfile.this, LoginActivity.class);
+                intent.putExtra("username", currentUsername);
+                startActivity(intent);
+            }
+        });
     }
 
+    private void displayUserDetails(String username) {
+        Cursor cursor = databaseHelper.getUserDetails(username);
+        if (cursor != null && cursor.moveToFirst()) {
+            String nickname = cursor.getString(cursor.getColumnIndex("nickname"));
+            String password = cursor.getString(cursor.getColumnIndex("password"));
+
+            // Display the retrieved values in TextViews
+            textViewNickname.setText("Nickname: " + nickname);
+            textViewUsername.setText("Username: " + username);
+            textViewPassword.setText("Password: " + password);
+
+            cursor.close();
+        }
+    }
 }

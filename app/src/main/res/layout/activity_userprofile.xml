@@ -36,21 +36,21 @@
                 android:textColor="@color/lavender"/>
 
             <TextView
-                android:id="@+id/textViewNickname"
+                android:id="@+id/textViewUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Nickname:"
+                android:text="Username:"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/textViewUsername"
+                android:id="@+id/textViewNickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewNickname"
+                android:layout_below="@+id/textViewUsername"
                 android:layout_marginTop="8dp"
-                android:text="Username:"
+                android:text="Nickname:"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
@@ -64,12 +64,32 @@
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            android:layout_marginTop="15dp">
+
             <Button
                 android:id="@+id/EditProfileButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Edit"
+                android:layout_marginLeft="20dp"
                 android:layout_gravity="center_horizontal"/>
+
+            <Button
+                android:id="@+id/LogoutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:layout_marginLeft="70dp"
+                android:layout_gravity="center_horizontal"/>
+        </LinearLayout>
+
 
         </LinearLayout>
 
