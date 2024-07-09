@@ -1,13 +1,12 @@
 package com.TicTacToeProject.tictactoe;
 
- import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
- import android.content.Intent;
- import android.os.Bundle;
- import android.view.View;
- import android.widget.Toast;
-
- import com.TicTacToeProject.tictactoe.databinding.ActivityLoginBinding;
+import com.TicTacToeProject.tictactoe.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,19 +24,19 @@ public class LoginActivity extends AppCompatActivity {
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = binding.loginEmail.getText().toString();
+                String username = binding.loginUsername.getText().toString();
                 String password = binding.loginPassword.getText().toString();
 
-                if(email.equals("")||password.equals(""))
+                if(username.equals("") || password.equals(""))
                     Toast.makeText(LoginActivity.this, "All fields are mandatory", Toast.LENGTH_SHORT).show();
-                else{
-                    Boolean checkCredentials = databaseHelper.checkEmailPassword(email, password);
+                else {
+                    Boolean checkCredentials = databaseHelper.checkUsernamePassword(username, password);
 
-                    if(checkCredentials == true){
+                    if (checkCredentials == true) {
                         Toast.makeText(LoginActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
-                        Intent intent  = new Intent(getApplicationContext(), AddPlayers.class);
+                        Intent intent = new Intent(getApplicationContext(), AddPlayers.class);
                         startActivity(intent);
-                    }else{
+                    } else {
                         Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                     }
                 }

@@ -1,6 +1,5 @@
 package com.TicTacToeProject.tictactoe;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,48 +7,53 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
-public class DatabaseHelper extends SQLiteOpenHelper  {
+public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String databaseName = "SignLog.db";
+    public static final int databaseVersion = 2; // Increment version for upgrade
+
     public DatabaseHelper(@Nullable Context context) {
-        super(context, "SignLog.db", null, 1);
+        super(context, databaseName, null, databaseVersion);
     }
+
     @Override
     public void onCreate(SQLiteDatabase MyDatabase) {
-        MyDatabase.execSQL("create Table users(email TEXT primary key, password TEXT)");
+        MyDatabase.execSQL("CREATE TABLE users (nickname TEXT, username TEXT PRIMARY KEY, password TEXT)");
     }
+
     @Override
-    public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
-        MyDB.execSQL("drop Table if exists users");
+    public void onUpgrade(SQLiteDatabase MyDB, int oldVersion, int newVersion) {
+        if (oldVersion < 2) {
+            MyDB.execSQL("ALTER TABLE users RENAME TO old_users");
+            MyDB.execSQL("CREATE TABLE users (nickname TEXT, username TEXT PRIMARY KEY, password TEXT)");
+            MyDB.execSQL("INSERT INTO users (nickname, username, password) SELECT email, email, password FROM old_users");
+            MyDB.execSQL("DROP TABLE old_users");
+        }
     }
-    public Boolean insertData(String email, String password){
+
+    public Boolean insertData(String nickname, String username, String password) {
         SQLiteDatabase MyDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("email", email);
+        contentValues.put("nickname", nickname);
+        contentValues.put("username", username);
         contentValues.put("password", password);
         long result = MyDatabase.insert("users", null, contentValues);
-        if (result == -1) {
-            return false;
-        } else {
-            return true;
-        }
+        return result != -1;
     }
-    public Boolean checkEmail(String email){
-        SQLiteDatabase MyDatabase = this.getWritableDatabase();
-        Cursor cursor = MyDatabase.rawQuery("Select * from users where email = ?", new String[]{email});
-        if(cursor.getCount() > 0) {
-            return true;
-        }else {
-            return false;
-        }
+
+    public Boolean checkUsername(String username) {
+        SQLiteDatabase MyDatabase = this.getReadableDatabase();
+        Cursor cursor = MyDatabase.rawQuery("SELECT * FROM users WHERE username = ?", new String[]{username});
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        return exists;
     }
-    public Boolean checkEmailPassword(String email, String password){
-        SQLiteDatabase MyDatabase = this.getWritableDatabase();
-        Cursor cursor = MyDatabase.rawQuery("Select * from users where email = ? and password = ?", new String[]{email, password});
-        if (cursor.getCount() > 0) {
-            return true;
-        }else {
-            return false;
-        }
+
+    public Boolean checkUsernamePassword(String username, String password) {
+        SQLiteDatabase MyDatabase = this.getReadableDatabase();
+        Cursor cursor = MyDatabase.rawQuery("SELECT * FROM users WHERE username = ? AND password = ?", new String[]{username, password});
+        boolean valid = cursor.getCount() > 0;
+        cursor.close();
+        return valid;
     }
 }
