@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/pagebkg"
-    tools:context=".UserProfile">
+    tools:context=".EditProfile">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -28,47 +28,40 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="User Profile"
+                android:text="Edit Profile"
                 android:textAlignment="center"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="16dp"
                 android:textColor="@color/lavender"/>
 
-            <TextView
-                android:id="@+id/textViewNickname"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/editTextNickname"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Nickname:"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:hint="Nickname"
+                android:layout_marginBottom="16dp"/>
 
-            <TextView
-                android:id="@+id/textViewUsername"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/editTextUsername"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewNickname"
-                android:layout_marginTop="8dp"
-                android:text="Username:"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:hint="Username"
+                android:layout_marginBottom="16dp"/>
 
-            <TextView
-                android:id="@+id/textViewPassword"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewUsername"
-                android:layout_marginTop="8dp"
-                android:text="Password:"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:layout_marginBottom="16dp"/>
 
             <Button
-                android:id="@+id/EditProfileButton"
+                android:id="@+id/buttonSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit"
+                android:text="Save"
                 android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>

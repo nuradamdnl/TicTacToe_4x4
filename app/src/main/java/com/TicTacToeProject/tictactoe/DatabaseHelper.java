@@ -56,5 +56,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return valid;
     }
-}
 
+    public Cursor getUserData(String username) {
+        SQLiteDatabase MyDatabase = this.getReadableDatabase();
+        return MyDatabase.rawQuery("SELECT * FROM users WHERE username = ?", new String[]{username});
+    }
+
+    public Boolean updateUserData(String oldUsername, String newNickname, String newUsername, String newPassword) {
+        SQLiteDatabase MyDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("nickname", newNickname);
+        contentValues.put("username", newUsername);
+        contentValues.put("password", newPassword);
+
+        long result = MyDatabase.update("users", contentValues, "username=?", new String[]{oldUsername});
+        return result != -1;
+    }
+
+
+}
