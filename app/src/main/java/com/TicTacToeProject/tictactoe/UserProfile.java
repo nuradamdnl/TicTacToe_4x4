@@ -36,19 +36,17 @@ public class UserProfile extends AppCompatActivity {
         currentPassword = getIntent().getStringExtra("password");
 
 
-    }
-
-    Button EditProfileButton = findViewById(R.id.EditProfileButton);
+        Button EditProfileButton = findViewById(R.id.EditProfileButton);
         EditProfileButton.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(UserProfile.this, EditProfile.class);
-            intent.putExtra("username", currentUsername); // Pass the username to UserProfile
-            startActivity(intent);
-        }
-    });
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfile.this, EditProfile.class);
+                intent.putExtra("username", currentUsername); // Pass the username to UserProfile
+                startActivity(intent);
+            }
+        });
 
 
-
+    }
 
 }
