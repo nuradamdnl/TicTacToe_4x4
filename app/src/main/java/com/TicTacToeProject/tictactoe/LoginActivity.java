@@ -24,17 +24,18 @@ public class LoginActivity extends AppCompatActivity {
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = binding.loginUsername.getText().toString();
+                String username = binding.loginUsername.getText().toString(); // Change to username
                 String password = binding.loginPassword.getText().toString();
 
-                if(username.equals("") || password.equals(""))
+                if(username.equals("") || password.equals("")) {
                     Toast.makeText(LoginActivity.this, "All fields are mandatory", Toast.LENGTH_SHORT).show();
-                else {
+                } else {
                     Boolean checkCredentials = databaseHelper.checkUsernamePassword(username, password);
 
-                    if (checkCredentials == true) {
+                    if(checkCredentials == true) {
                         Toast.makeText(LoginActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), Home.class);
+                        intent.putExtra("username", username); // Pass the username
                         startActivity(intent);
                     } else {
                         Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();

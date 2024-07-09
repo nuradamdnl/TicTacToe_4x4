@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -26,6 +25,7 @@
             android:background="@drawable/lavender_border">
 
             <TextView
+                android:id="@+id/welcomeTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Welcome \nPlayer123"
@@ -34,7 +34,6 @@
                 android:textStyle="bold"
                 android:textColor="@color/lavender"/>
 
-
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -42,7 +41,7 @@
                 android:id="@+id/PlayNowButton"
                 android:text="Play Now"
                 android:textSize="18sp"
-                app:cornerRadius = "20dp"/>
+                app:cornerRadius="20dp"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -51,7 +50,7 @@
                 android:id="@+id/LeaderboardButton"
                 android:text="Leaderboard"
                 android:textSize="18sp"
-                app:cornerRadius = "20dp"/>
+                app:cornerRadius="20dp"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -60,11 +59,8 @@
                 android:id="@+id/UserProfileButton"
                 android:text="User profile"
                 android:textSize="18sp"
-                app:cornerRadius = "20dp"/>
-
+                app:cornerRadius="20dp"/>
 
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
-
 </RelativeLayout>
