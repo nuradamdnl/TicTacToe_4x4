@@ -56,7 +56,7 @@ public class UserProfile extends AppCompatActivity {
     }
 
     private void displayUserDetails(String username) {
-        Cursor cursor = databaseHelper.getUserDetails(username);
+        Cursor cursor = databaseHelper.getUserData(username);
         if (cursor != null && cursor.moveToFirst()) {
             String nickname = cursor.getString(cursor.getColumnIndex("nickname"));
             String password = cursor.getString(cursor.getColumnIndex("password"));

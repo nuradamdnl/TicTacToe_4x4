@@ -4,9 +4,7 @@ pluginManagement {
             content {
                 includeGroupByRegex("com\\.android.*")
                 includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
+                includeGroupByRegex("androidx.*") }
         mavenCentral()
         gradlePluginPortal()
     }
@@ -15,9 +13,12 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
+        maven("https://jitpack.io")
         mavenCentral()
     }
 }
 
 rootProject.name = "TicTacToe"
-include(":app")
+include (":app")
+
+}

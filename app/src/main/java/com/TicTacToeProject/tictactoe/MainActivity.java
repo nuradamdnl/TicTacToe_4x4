@@ -1,13 +1,11 @@
 package com.TicTacToeProject.tictactoe;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import com.TicTacToeProject.tictactoe.databinding.ActivityMainBinding;
 import java.util.ArrayList;
@@ -15,12 +13,13 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-
     ActivityMainBinding binding;
     private final List<int[]> combinationList = new ArrayList<>();
     private int[] boxPositions = new int[16]; //16 zeroes
     private int playerTurn = 1;
     private int totalSelectedBoxes = 1;
+    private String playerOneName;
+    private String playerTwoName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
         combinationList.add(new int[]{0, 5, 10, 15});
         combinationList.add(new int[]{3, 6, 9, 12});
 
-        String getPlayerOneName = getIntent().getStringExtra("playerOne");
-        String getPlayerTwoName = getIntent().getStringExtra("playerTwo");
-        binding.playerOneName.setText(getPlayerOneName);
-        binding.playerTwoName.setText(getPlayerTwoName);
+        playerOneName = getIntent().getStringExtra("playerOne");
+        playerTwoName = getIntent().getStringExtra("playerTwo");
+        binding.playerOneName.setText(playerOneName);
+        binding.playerTwoName.setText(playerTwoName);
 
         // Set click listeners for all 16 image views
         binding.image1.setOnClickListener(view -> onClickImage(view, 0));
@@ -65,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
         binding.image14.setOnClickListener(view -> onClickImage(view, 13));
         binding.image15.setOnClickListener(view -> onClickImage(view, 14));
         binding.image16.setOnClickListener(view -> onClickImage(view, 15));
+
+        Button viewLeaderboardButton = findViewById(R.id.viewLeaderboardButton);
+        viewLeaderboardButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, Leaderboard.class);
+            startActivity(intent);
+        });
+
     }
 
     private void onClickImage(View view, int position) {
@@ -79,10 +85,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (checkResults()) {
             String winner = playerTurn == 1 ? binding.playerOneName.getText().toString() : binding.playerTwoName.getText().toString();
+            saveResult(playerOneName, playerTwoName, winner);
             ResultDialog resultDialog = new ResultDialog(MainActivity.this, winner + " is a Winner!", MainActivity.this);
             resultDialog.setCancelable(false);
             resultDialog.show();
         } else if (totalSelectedBoxes == 16) {
+            saveResult(playerOneName, playerTwoName, "Draw");
             ResultDialog resultDialog = new ResultDialog(MainActivity.this, "Match Draw", MainActivity.this);
             resultDialog.setCancelable(false);
             resultDialog.show();
@@ -113,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return false;
+    }
+
+    private void saveResult(String playerOne, String playerTwo, String winner) {
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        databaseHelper.insertResult(playerOne, playerTwo, winner);
     }
 
     private boolean isBoxSelectable(int boxPosition) {
