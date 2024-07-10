@@ -53,6 +53,17 @@ public class UserProfile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // Setup EditProfileButton click listener
+        Button BackButton = findViewById(R.id.BackButton);
+        BackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfile.this, Home.class);
+                intent.putExtra("username", currentUsername);
+                startActivity(intent);
+            }
+        });
     }
 
     private void displayUserDetails(String username) {
