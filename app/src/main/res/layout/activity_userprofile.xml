@@ -65,30 +65,41 @@
                 android:textStyle="bold"/>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal"
-            android:padding="10dp"
-            android:layout_marginTop="15dp">
-
-            <Button
-                android:id="@+id/EditProfileButton"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Edit"
-                android:layout_marginLeft="20dp"
-                android:layout_gravity="center_horizontal"/>
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                android:layout_marginTop="15dp">
 
-            <Button
-                android:id="@+id/LogoutButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Logout"
-                android:layout_marginLeft="50dp"
-                android:layout_gravity="center_horizontal"/>
-        </LinearLayout>
+                <Button
+                    android:id="@+id/BackButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Back"
+                    android:layout_marginLeft="3dp"
+                    android:layout_gravity="center_horizontal"/>
+
+                <Button
+                    android:id="@+id/EditProfileButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center_horizontal"/>
+
+                <Button
+                    android:id="@+id/LogoutButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Logout"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="center_horizontal"/>
+
+
+            </LinearLayout>
 
 
         </LinearLayout>
