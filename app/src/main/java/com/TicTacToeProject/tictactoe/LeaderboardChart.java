@@ -21,6 +21,8 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import android.graphics.Color;
+import java.util.Random;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +50,7 @@ public class LeaderboardChart extends AppCompatActivity {
 
         PieChart pieChart = findViewById(R.id.pieChart);
         BarChart barChart = findViewById(R.id.barChart);
-        LineChart lineChart = findViewById(R.id.lineChart);
+        //LineChart lineChart = findViewById(R.id.lineChart);
 
         Map<String, Integer> playerScores = getPlayerScores();
 
@@ -63,13 +65,26 @@ public class LeaderboardChart extends AppCompatActivity {
             lineEntries.add(new Entry(index++, entry.getValue()));
         }
 
+
+
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "Player Scores");
+        // Generate random colors for each entry
+        /** List<Integer> pieColors = new ArrayList<>();
+        for (int i = 0; i < pieEntries.size(); i++) {
+            pieColors.add(getRandomColor());
+        }
+        pieDataSet.setColors(pieColors); **/
         pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
         PieData pieData = new PieData(pieDataSet);
         pieChart.setData(pieData);
         pieChart.invalidate(); // refresh
 
         BarDataSet barDataSet = new BarDataSet(barEntries, "Player Scores");
+        /**List<Integer> barColors = new ArrayList<>();
+        for (int i = 0; i < barEntries.size(); i++) {
+            barColors.add(getRandomColor());
+        }
+        barDataSet.setColors(barColors); **/
         barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
         BarData barData = new BarData(barDataSet);
         barChart.setData(barData);
@@ -78,14 +93,19 @@ public class LeaderboardChart extends AppCompatActivity {
         LineDataSet lineDataSet = new LineDataSet(lineEntries, "Player Scores");
         lineDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
         LineData lineData = new LineData(lineDataSet);
-        lineChart.setData(lineData);
-        lineChart.invalidate(); // refresh
+        //lineChart.setData(lineData);
+        //lineChart.invalidate(); // refresh
 
         Description description = new Description();
         description.setText("Player Leaderboard");
         pieChart.setDescription(description);
         barChart.setDescription(description);
-        lineChart.setDescription(description);
+        //lineChart.setDescription(description);
+    }
+
+    private int getRandomColor() {
+        Random random = new Random();
+        return Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
     }
 
     private Map<String, Integer> getPlayerScores() {

@@ -65,11 +65,14 @@ public class MainActivity extends AppCompatActivity {
         binding.image15.setOnClickListener(view -> onClickImage(view, 14));
         binding.image16.setOnClickListener(view -> onClickImage(view, 15));
 
-        Button viewLeaderboardButton = findViewById(R.id.viewLeaderboardButton);
-        viewLeaderboardButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, Leaderboard.class);
-            startActivity(intent);
+        Button resetButton = findViewById(R.id.ClearGameButton);
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                restartMatch();
+            }
         });
+
 
     }
 

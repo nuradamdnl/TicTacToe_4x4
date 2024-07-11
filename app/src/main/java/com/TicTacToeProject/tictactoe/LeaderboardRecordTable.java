@@ -1,11 +1,10 @@
 package com.TicTacToeProject.tictactoe;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,13 +12,21 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LeaderboardRecordTable extends AppCompatActivity {
 
     private DatabaseHelper databaseHelper;
+    private TableLayout rankingTableLayout;
     private TableLayout tableLayout;
+    private EditText searchBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,90 +34,138 @@ public class LeaderboardRecordTable extends AppCompatActivity {
         setContentView(R.layout.activity_leaderboardrecordtable);
 
         databaseHelper = new DatabaseHelper(this);
+        rankingTableLayout = findViewById(R.id.rankingTableLayout);
         tableLayout = findViewById(R.id.tableLayout);
+        searchBox = findViewById(R.id.searchBox);
 
-        Button backButton = findViewById(R.id.ChartBackButton);
-        backButton.setOnClickListener(view -> {
+        Button chartbackButton = findViewById(R.id.ChartBackButton);
+        chartbackButton.setOnClickListener(view -> {
             Intent intent = new Intent(LeaderboardRecordTable.this, Leaderboard.class);
             startActivity(intent);
         });
 
-        loadTableData();
+        populateRankingTable("");
+        populateTable("");
+
+        searchBox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                populateRankingTable(charSequence.toString());
+                populateTable(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
     }
 
-    private void loadTableData() {
+    private void populateRankingTable(String searchQuery) {
+        rankingTableLayout.removeViews(1, Math.max(0, rankingTableLayout.getChildCount() - 1)); // Clear all rows except header
+        Map<String, Integer> playerScores = new HashMap<>();
+
         Cursor cursor = databaseHelper.getAllResults();
         if (cursor != null) {
             while (cursor.moveToNext()) {
-                TableRow row = (TableRow) LayoutInflater.from(this).inflate(R.layout.table_row, null);
-                ((TextView) row.findViewById(R.id.gameId)).setText(String.valueOf(cursor.getInt(cursor.getColumnIndex("id"))));
-                ((TextView) row.findViewById(R.id.playerOne)).setText(cursor.getString(cursor.getColumnIndex("player_one")));
-                ((TextView) row.findViewById(R.id.playerTwo)).setText(cursor.getString(cursor.getColumnIndex("player_two")));
-                ((TextView) row.findViewById(R.id.winner)).setText(cursor.getString(cursor.getColumnIndex("winner")));
+                String playerOne = cursor.getString(cursor.getColumnIndex("player_one"));
+                String playerTwo = cursor.getString(cursor.getColumnIndex("player_two"));
+                String winner = cursor.getString(cursor.getColumnIndex("winner"));
 
-                Button editButton = row.findViewById(R.id.editButton);
-                Button deleteButton = row.findViewById(R.id.deleteButton);
+                if (!playerScores.containsKey(playerOne)) {
+                    playerScores.put(playerOne, 0);
+                }
+                if (!playerScores.containsKey(playerTwo)) {
+                    playerScores.put(playerTwo, 0);
+                }
 
-                int gameId = cursor.getInt(cursor.getColumnIndex("id"));
-                editButton.setOnClickListener(view -> showEditDialog(gameId));
-                deleteButton.setOnClickListener(view -> showDeleteDialog(gameId));
+                if (winner.equals("Draw")) {
+                    playerScores.put(playerOne, playerScores.get(playerOne) + 1);
+                    playerScores.put(playerTwo, playerScores.get(playerTwo) + 1);
+                } else {
+                    playerScores.put(winner, playerScores.get(winner) + 3);
+                }
+            }
+            cursor.close();
+        }
 
-                tableLayout.addView(row);
+        List<Map.Entry<String, Integer>> playerScoreList = new ArrayList<>(playerScores.entrySet());
+        Collections.sort(playerScoreList, (o1, o2) -> o2.getValue().compareTo(o1.getValue())); // Sort by score in descending order
+
+        int rank = 1;
+        for (Map.Entry<String, Integer> entry : playerScoreList) {
+            if (entry.getKey().toLowerCase().contains(searchQuery.toLowerCase())) {
+                TableRow row = new TableRow(this);
+                row.addView(createTextView(String.valueOf(rank)));
+                row.addView(createTextView(entry.getKey()));
+                row.addView(createTextView(String.valueOf(entry.getValue())));
+                rankingTableLayout.addView(row);
+                rank++;
+            }
+        }
+    }
+
+    private void populateTable(String searchQuery) {
+        tableLayout.removeViews(1, Math.max(0, tableLayout.getChildCount() - 1)); // Clear all rows except header
+        Cursor cursor = databaseHelper.getAllResults();
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                String playerOne = cursor.getString(cursor.getColumnIndex("player_one"));
+                String playerTwo = cursor.getString(cursor.getColumnIndex("player_two"));
+                String winner = cursor.getString(cursor.getColumnIndex("winner"));
+
+                if (playerOne.toLowerCase().contains(searchQuery.toLowerCase()) || playerTwo.toLowerCase().contains(searchQuery.toLowerCase())) {
+                    int playerOnePoints = calculatePlayerPoints(playerOne, winner);
+                    int playerTwoPoints = calculatePlayerPoints(playerTwo, winner);
+
+                    TableRow row = new TableRow(this);
+                    row.addView(createTextView(String.valueOf(id)));
+                    row.addView(createTextView(playerOne));
+                    row.addView(createTextView(String.valueOf(playerOnePoints)));
+                    row.addView(createTextView(playerTwo));
+                    row.addView(createTextView(String.valueOf(playerTwoPoints)));
+                    row.addView(createTextView(winner));
+
+                    Button deleteButton = new Button(this);
+                    deleteButton.setText("Delete");
+                    deleteButton.setOnClickListener(v -> deleteRecord(id));
+
+                    row.addView(deleteButton);
+
+                    tableLayout.addView(row);
+                }
             }
             cursor.close();
         }
     }
 
-    private void showEditDialog(int gameId) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.dialog_edit_record, null);
-
-        EditText editPlayerOne = view.findViewById(R.id.editPlayerOne);
-        EditText editPlayerTwo = view.findViewById(R.id.editPlayerTwo);
-        EditText editWinner = view.findViewById(R.id.editWinner);
-
-        Cursor cursor = databaseHelper.getAllResults();
-        if (cursor != null && cursor.moveToFirst()) {
-            editPlayerOne.setText(cursor.getString(cursor.getColumnIndex("player_one")));
-            editPlayerTwo.setText(cursor.getString(cursor.getColumnIndex("player_two")));
-            editWinner.setText(cursor.getString(cursor.getColumnIndex("winner")));
-            cursor.close();
-        }
-
-        builder.setView(view)
-                .setTitle("Edit Record")
-                .setPositiveButton("Update", (dialog, which) -> {
-                    String playerOne = editPlayerOne.getText().toString();
-                    String playerTwo = editPlayerTwo.getText().toString();
-                    String winner = editWinner.getText().toString();
-                    boolean updated = databaseHelper.updateResult(gameId, playerOne, playerTwo, winner);
-                    if (updated) {
-                        Toast.makeText(this, "Record updated", Toast.LENGTH_SHORT).show();
-                        recreate(); // Refresh activity
-                    } else {
-                        Toast.makeText(this, "Error updating record", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton("Cancel", null)
-                .create()
-                .show();
+    private TextView createTextView(String text) {
+        TextView textView = new TextView(this);
+        textView.setText(text);
+        textView.setPadding(10, 10, 10, 10);
+        return textView;
     }
 
-    private void showDeleteDialog(int gameId) {
-        new AlertDialog.Builder(this)
-                .setTitle("Delete Record")
-                .setMessage("Are you sure you want to delete this record?")
-                .setPositiveButton("Delete", (dialog, which) -> {
-                    boolean deleted = databaseHelper.deleteResult(gameId);
-                    if (deleted) {
-                        Toast.makeText(this, "Record deleted", Toast.LENGTH_SHORT).show();
-                        recreate(); // Refresh activity
-                    } else {
-                        Toast.makeText(this, "Error deleting record", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton("Cancel", null)
-                .create()
-                .show();
+    private void deleteRecord(int id) {
+        boolean result = databaseHelper.deleteResult(id);
+        if (result) {
+            Toast.makeText(this, "Record deleted", Toast.LENGTH_SHORT).show();
+            populateRankingTable(searchBox.getText().toString());
+            populateTable(searchBox.getText().toString()); // Refresh the table to show the updated results
+        } else {
+            Toast.makeText(this, "Error deleting record", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private int calculatePlayerPoints(String playerName, String winner) {
+        if (winner.equals("Draw")) {
+            return 1;
+        } else if (winner.equals(playerName)) {
+            return 3;
+        } else {
+            return 0;
+        }
     }
 }
