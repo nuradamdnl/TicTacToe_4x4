@@ -6,12 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "SignLog.db";
-    public static final int DATABASE_VERSION = 3; // Updated version
+    public static final int DATABASE_VERSION = 3;
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -103,5 +104,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getAllResults() {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM results", null);
+    }
+
+    public boolean updateResult(int id, String playerOne, String playerTwo, String winner) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("player_one", playerOne);
+        contentValues.put("player_two", playerTwo);
+        contentValues.put("winner", winner);
+        long result = db.update("results", contentValues, "id=?", new String[]{String.valueOf(id)});
+        return result > 0;
+    }
+
+    public boolean deleteResult(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete("results", "id=?", new String[]{String.valueOf(id)});
+        return result > 0;
     }
 }

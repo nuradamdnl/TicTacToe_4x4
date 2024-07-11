@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <EditText
+        android:id="@+id/editPlayerOne"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Player One" />
+
+    <EditText
+        android:id="@+id/editPlayerTwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Player Two" />
+
+    <EditText
+        android:id="@+id/editWinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Winner" />
+
+    <Button
+        android:id="@+id/buttonUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update" />
+
+</LinearLayout>

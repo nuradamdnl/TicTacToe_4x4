@@ -55,8 +55,8 @@ public class UserProfile extends AppCompatActivity {
         });
 
         // Setup EditProfileButton click listener
-        Button BackButton = findViewById(R.id.BackButton);
-        BackButton.setOnClickListener(new View.OnClickListener() {
+        Button userprofileBackButton = findViewById(R.id.UserProfileBackButton);
+        userprofileBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(UserProfile.this, Home.class);
