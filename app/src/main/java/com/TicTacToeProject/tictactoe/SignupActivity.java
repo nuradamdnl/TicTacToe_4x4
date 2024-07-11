@@ -19,6 +19,7 @@ public class SignupActivity extends AppCompatActivity {
         binding = ActivitySignupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         databaseHelper = new DatabaseHelper(this);
+        startService(new Intent(this, BackgroundMusicService.class));
 
         binding.signupButton.setOnClickListener(new View.OnClickListener() {
             @Override

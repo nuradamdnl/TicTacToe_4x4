@@ -35,6 +35,7 @@ public class LeaderboardRecordTable extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboardrecordtable);
+        startService(new Intent(this, BackgroundMusicService.class));
 
         databaseHelper = new DatabaseHelper(this);
         rankingTableLayout = findViewById(R.id.rankingTableLayout);

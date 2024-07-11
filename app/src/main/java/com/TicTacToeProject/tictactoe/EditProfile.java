@@ -20,6 +20,7 @@ public class EditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editprofile);
+        startService(new Intent(this, BackgroundMusicService.class));
 
         databaseHelper = new DatabaseHelper(this);
 

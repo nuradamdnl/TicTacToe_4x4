@@ -21,6 +21,8 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        startService(new Intent(this, BackgroundMusicService.class));
+
         databaseHelper = new DatabaseHelper(this);
         // sharedPreferences = getSharedPreferences("LoginPrefs", MODE_PRIVATE);
 

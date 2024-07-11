@@ -15,6 +15,7 @@ public class Leaderboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
+        startService(new Intent(this, BackgroundMusicService.class));
 
         Intent intent = getIntent();
         currentUsername = intent.getStringExtra("username");

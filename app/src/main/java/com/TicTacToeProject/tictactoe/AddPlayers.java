@@ -22,6 +22,7 @@ public class AddPlayers extends AppCompatActivity {
         Button startGameButton = findViewById(R.id.startGameButton);
         Intent intent = getIntent();
         currentUsername = intent.getStringExtra("username");
+        startService(new Intent(this, BackgroundMusicService.class));
 
 
         startGameButton.setOnClickListener(new View.OnClickListener() {

@@ -39,6 +39,7 @@ public class LeaderboardChart extends AppCompatActivity {
         setContentView(R.layout.activity_leaderboardchart);
 
         databaseHelper = new DatabaseHelper(this);
+        startService(new Intent(this, BackgroundMusicService.class));
 
         Intent intent = getIntent();
         currentUsername = intent.getStringExtra("username");

@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TicTacToe"
         tools:targetApi="31">
+        <service android:name=".BackgroundMusicService" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">

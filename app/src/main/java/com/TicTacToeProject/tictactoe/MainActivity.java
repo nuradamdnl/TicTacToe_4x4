@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        startService(new Intent(this, BackgroundMusicService.class));
+
         Intent intent = getIntent();
         currentUsername = intent.getStringExtra("username");
 
