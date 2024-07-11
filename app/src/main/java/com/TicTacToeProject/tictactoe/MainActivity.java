@@ -20,12 +20,17 @@ public class MainActivity extends AppCompatActivity {
     private int totalSelectedBoxes = 1;
     private String playerOneName;
     private String playerTwoName;
+    String currentUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Intent intent = getIntent();
+        currentUsername = intent.getStringExtra("username");
+
 
         // Add winning combinations for 4x4 grid
         // Rows
@@ -129,6 +134,13 @@ public class MainActivity extends AppCompatActivity {
     private void saveResult(String playerOne, String playerTwo, String winner) {
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
         databaseHelper.insertResult(playerOne, playerTwo, winner);
+    }
+    public void exitMatch() {
+        Intent intent = new Intent(MainActivity.this, Home.class); // Change HomeActivity to the activity you want to navigate to
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("username", currentUsername); // Pass the username to UserProfile
+        startActivity(intent);
+        finish();
     }
 
     private boolean isBoxSelectable(int boxPosition) {

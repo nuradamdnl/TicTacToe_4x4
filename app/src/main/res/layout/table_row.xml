@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -6,39 +5,55 @@
 
     <TextView
         android:id="@+id/gameId"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="10dp" />
+        android:layout_weight="1"
+        android:padding="10dp"
+        android:text="Game ID"
+        android:textColor="@color/lavender"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/playerOne"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="10dp" />
+        android:layout_weight="1"
+        android:padding="10dp"
+        android:text="Player One"
+        android:textColor="@color/lavender"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/playerTwo"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="10dp" />
+        android:layout_weight="1"
+        android:padding="10dp"
+        android:text="Player Two"
+        android:textColor="@color/lavender"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/winner"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="10dp" />
+        android:layout_weight="1"
+        android:padding="10dp"
+        android:text="Winner"
+        android:textColor="@color/lavender"
+        android:textStyle="bold"/>
 
     <Button
         android:id="@+id/editButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit"
-        android:padding="10dp" />
+        android:padding="10dp"/>
 
     <Button
         android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete"
-        android:padding="10dp" />
+        android:padding="10dp"/>
 </TableRow>

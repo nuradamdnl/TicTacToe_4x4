@@ -16,6 +16,8 @@ import android.widget.TextView;
 public class ResultDialog extends Dialog {
     private final String message;
     private final MainActivity mainActivity;
+
+
     public ResultDialog(@NonNull Context context, String message, MainActivity mainActivity) {
         super(context);
         this.message = message;
@@ -27,8 +29,10 @@ public class ResultDialog extends Dialog {
         setContentView(R.layout.activity_result_dialog);
         TextView messageText = findViewById(R.id.messageText);
         Button startAgainButton = findViewById(R.id.startAgainButton);
-        Button viewLeaderboardButton = findViewById(R.id.viewLeaderboardButton);
+        Button exitButton = findViewById(R.id.ExitButton);
         messageText.setText(message);
+
+
         startAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,13 +41,15 @@ public class ResultDialog extends Dialog {
             }
         });
 
-        viewLeaderboardButton.setOnClickListener(new View.OnClickListener() {
+        exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mainActivity, LeaderboardRecordTable.class);
-                mainActivity.startActivity(intent);
-                dismiss(); // Optional: dismiss the dialog when navigating to leaderboard
+                mainActivity.exitMatch();
+                dismiss();
             }
         });
+
+
+
     }
 }

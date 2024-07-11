@@ -31,6 +31,7 @@ import java.util.Map;
 public class LeaderboardChart extends AppCompatActivity {
 
     private DatabaseHelper databaseHelper;
+    String currentUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +40,16 @@ public class LeaderboardChart extends AppCompatActivity {
 
         databaseHelper = new DatabaseHelper(this);
 
+        Intent intent = getIntent();
+        currentUsername = intent.getStringExtra("username");
+
+
         Button chartbackButton = findViewById(R.id.ChartBackButton);
         chartbackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LeaderboardChart.this, Leaderboard.class);
+                intent.putExtra("username", currentUsername); // Pass the username to UserProfile
                 startActivity(intent);
             }
         });

@@ -16,11 +16,12 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/ChartBackButton"
+            android:id="@+id/RecordTableBackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Back"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/secondheader_card"
@@ -51,13 +52,13 @@
             app:cardCornerRadius="30dp"
             app:cardElevation="20dp">
 
-        <EditText
-            android:id="@+id/searchBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Search Player"
-            android:padding="10dp"
-            android:textColor="@color/lavender" />
+            <EditText
+                android:id="@+id/searchBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Search Player"
+                android:padding="10dp"
+                android:textColor="@color/lavender" />
 
         </androidx.cardview.widget.CardView>
 
@@ -68,8 +69,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
             app:cardElevation="4dp"
-            android:padding="16dp"
-            >
+            android:padding="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -97,28 +97,32 @@
                         android:layout_height="wrap_content"
                         android:stretchColumns="1">
 
-                        <TableRow>
+                        <TableRow
+                            android:gravity="center">
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Rank"
                                 android:padding="10dp"
                                 android:textStyle="bold"
-                                android:textColor="@color/lavender"/>
+                                android:textColor="@color/lavender"
+                                android:gravity="center"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Player"
                                 android:padding="10dp"
                                 android:textStyle="bold"
-                                android:textColor="@color/lavender"/>
+                                android:textColor="@color/lavender"
+                                android:gravity="center"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Total Points"
                                 android:padding="10dp"
                                 android:textStyle="bold"
-                                android:textColor="@color/lavender"/>
+                                android:textColor="@color/lavender"
+                                android:gravity="center"/>
                         </TableRow>
                     </TableLayout>
                 </HorizontalScrollView>
@@ -131,8 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             app:cardElevation="4dp"
-            android:padding="16dp"
-            >
+            android:padding="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -163,56 +166,64 @@
                             android:layout_height="wrap_content"
                             android:stretchColumns="1">
 
-                            <TableRow>
+                            <TableRow
+                                android:gravity="center">
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Game ID"
                                     android:padding="10dp"
                                     android:textStyle="bold"
-                                    android:textColor="@color/lavender"/>
+                                    android:textColor="@color/lavender"
+                                    android:gravity="center"/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Player One"
                                     android:padding="10dp"
                                     android:textStyle="bold"
-                                    android:textColor="@color/lavender"/>
+                                    android:textColor="@color/lavender"
+                                    android:gravity="center"/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Player One Points"
                                     android:padding="10dp"
                                     android:textStyle="bold"
-                                    android:textColor="@color/lavender"/>
+                                    android:textColor="@color/lavender"
+                                    android:gravity="center"/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Player Two"
                                     android:padding="10dp"
                                     android:textStyle="bold"
-                                    android:textColor="@color/lavender"/>
+                                    android:textColor="@color/lavender"
+                                    android:gravity="center"/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Player Two Points"
                                     android:padding="10dp"
                                     android:textStyle="bold"
-                                    android:textColor="@color/lavender"/>
+                                    android:textColor="@color/lavender"
+                                    android:gravity="center"/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Winner"
                                     android:padding="10dp"
                                     android:textStyle="bold"
-                                    android:textColor="@color/lavender"/>
+                                    android:textColor="@color/lavender"
+                                    android:gravity="center"/>
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Actions"
                                     android:padding="10dp"
                                     android:textStyle="bold"
-                                    android:textColor="@color/lavender"/>
+                                    android:textColor="@color/lavender"
+                                    android:gravity="center"/>
                             </TableRow>
                         </TableLayout>
                     </ScrollView>

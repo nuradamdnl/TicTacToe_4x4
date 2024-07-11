@@ -89,15 +89,6 @@
                     android:layout_marginLeft="5dp"
                     android:layout_gravity="center_horizontal"/>
 
-                <Button
-                    android:id="@+id/LogoutButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Logout"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_gravity="center_horizontal"/>
-
 
             </LinearLayout>
 

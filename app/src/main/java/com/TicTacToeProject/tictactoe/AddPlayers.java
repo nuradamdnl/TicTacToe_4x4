@@ -7,7 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+
 public class AddPlayers extends AppCompatActivity {
+
+    String currentUsername;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,6 +20,10 @@ public class AddPlayers extends AppCompatActivity {
         EditText playerOne = findViewById(R.id.playerOne);
         EditText playerTwo = findViewById(R.id.playerTwo);
         Button startGameButton = findViewById(R.id.startGameButton);
+        Intent intent = getIntent();
+        currentUsername = intent.getStringExtra("username");
+
+
         startGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,6 +35,7 @@ public class AddPlayers extends AppCompatActivity {
                     Intent intent = new Intent(AddPlayers.this, MainActivity.class);
                     intent.putExtra("playerOne", getPlayerOneName);
                     intent.putExtra("playerTwo", getPlayerTwoName);
+                    intent.putExtra("username", currentUsername); // Pass the username to UserProfile
                     startActivity(intent);
                 }
             }

@@ -28,7 +28,7 @@
                 android:id="@+id/welcomeTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Welcome \nPlayer123"
+                android:text="Leaderboard"
                 android:textAlignment="center"
                 android:textSize="36sp"
                 android:textStyle="bold"

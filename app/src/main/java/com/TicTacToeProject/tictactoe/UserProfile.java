@@ -44,17 +44,6 @@ public class UserProfile extends AppCompatActivity {
         });
 
         // Setup EditProfileButton click listener
-        Button LogoutButton = findViewById(R.id.LogoutButton);
-        LogoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserProfile.this, LoginActivity.class);
-                intent.putExtra("username", currentUsername);
-                startActivity(intent);
-            }
-        });
-
-        // Setup EditProfileButton click listener
         Button userprofileBackButton = findViewById(R.id.UserProfileBackButton);
         userprofileBackButton.setOnClickListener(new View.OnClickListener() {
             @Override

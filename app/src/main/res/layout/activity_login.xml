@@ -64,7 +64,7 @@
                     android:layout_marginTop="14dp"
                     android:padding="8dp"
                     android:text="Not yet registered? Signup"
-                    android:textColor="@color/lavender"
+                    android:textColor="#ffffff"
                     android:textSize="18sp" />
 
             </LinearLayout>

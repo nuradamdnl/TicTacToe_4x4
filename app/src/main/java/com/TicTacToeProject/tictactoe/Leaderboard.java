@@ -19,15 +19,12 @@ public class Leaderboard extends AppCompatActivity {
         Intent intent = getIntent();
         currentUsername = intent.getStringExtra("username");
 
-        // Find the TextView and set the username
-        TextView welcomeTextView = findViewById(R.id.welcomeTextView);
-        welcomeTextView.setText("Welcome \n" + currentUsername);
-
         Button openchartButton = findViewById(R.id.OpenChartButton);
         openchartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Leaderboard.this, LeaderboardChart.class);
+                intent.putExtra("username", currentUsername); // Pass the username to UserProfile
                 startActivity(intent);
             }
         });
@@ -37,12 +34,13 @@ public class Leaderboard extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Leaderboard.this, LeaderboardRecordTable.class);
+                intent.putExtra("username", currentUsername); // Pass the username to UserProfile
                 startActivity(intent);
             }
         });
 
-        Button UserProfileButton = findViewById(R.id.LeaderboardBackButton);
-        UserProfileButton.setOnClickListener(new View.OnClickListener() {
+        Button leaderboardbackButton = findViewById(R.id.LeaderboardBackButton);
+        leaderboardbackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Leaderboard.this, Home.class);

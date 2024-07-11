@@ -7,10 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.TextView;
+import android.content.SharedPreferences;
 
 public class Home extends AppCompatActivity {
 
     String currentUsername;
+    private SharedPreferences sharedPreferences;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +20,7 @@ public class Home extends AppCompatActivity {
 
         Intent intent = getIntent();
         currentUsername = intent.getStringExtra("username");
+        sharedPreferences = getSharedPreferences("LoginPrefs", MODE_PRIVATE);
 
         // Find the TextView and set the username
         TextView welcomeTextView = findViewById(R.id.welcomeTextView);
@@ -28,6 +31,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Home.this, AddPlayers.class);
+                intent.putExtra("username", currentUsername); // Pass the username to UserProfile
                 startActivity(intent);
             }
         });
@@ -37,6 +41,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Home.this, Leaderboard.class);
+                intent.putExtra("username", currentUsername); // Pass the username to UserProfile
                 startActivity(intent);
             }
         });
@@ -51,6 +56,19 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        // Add more code as needed for other functionality or UI setup
+        Button logoutButton = findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isLoggedIn", false);
+                editor.putString("username", null);
+                editor.apply();
+
+                Intent intent = new Intent(Home.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

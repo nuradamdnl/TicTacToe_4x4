@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ public class LeaderboardRecordTable extends AppCompatActivity {
     private TableLayout rankingTableLayout;
     private TableLayout tableLayout;
     private EditText searchBox;
+    String currentUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +41,17 @@ public class LeaderboardRecordTable extends AppCompatActivity {
         tableLayout = findViewById(R.id.tableLayout);
         searchBox = findViewById(R.id.searchBox);
 
-        Button chartbackButton = findViewById(R.id.ChartBackButton);
-        chartbackButton.setOnClickListener(view -> {
-            Intent intent = new Intent(LeaderboardRecordTable.this, Leaderboard.class);
-            startActivity(intent);
+        Intent intent = getIntent();
+        currentUsername = intent.getStringExtra("username");
+
+        Button recordtableBackButton = findViewById(R.id.RecordTableBackButton);
+        recordtableBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LeaderboardRecordTable.this, Leaderboard.class);
+                intent.putExtra("username", currentUsername); // Pass the username to UserProfile
+                startActivity(intent);
+            }
         });
 
         populateRankingTable("");
@@ -144,7 +154,8 @@ public class LeaderboardRecordTable extends AppCompatActivity {
     private TextView createTextView(String text) {
         TextView textView = new TextView(this);
         textView.setText(text);
-        textView.setPadding(10, 10, 10, 10);
+        textView.setPadding(5, 5, 5, 5);
+        textView.setGravity(Gravity.CENTER); // Centers the text horizontally and vertically
         return textView;
     }
 

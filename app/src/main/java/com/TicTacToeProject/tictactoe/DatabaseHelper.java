@@ -67,6 +67,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return exists;
     }
 
+    public String getCurrentUsername() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String username = null;
+        Cursor cursor = db.rawQuery("SELECT username FROM users LIMIT 1", null);
+        if (cursor != null && cursor.moveToFirst()) {
+            username = cursor.getString(cursor.getColumnIndexOrThrow(username));
+            cursor.close();
+        }
+        return username;
+    }
+
     public Boolean checkUsernamePassword(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username = ? AND password = ?", new String[]{username, password});
@@ -114,6 +125,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("winner", winner);
         long result = db.update("results", contentValues, "id=?", new String[]{String.valueOf(id)});
         return result > 0;
+    }
+
+    public boolean isValidUser(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username=? AND password=?", new String[]{username, password});
+        boolean isValid = cursor.getCount() > 0;
+        cursor.close();
+        return isValid;
     }
 
     public boolean deleteResult(int id) {
