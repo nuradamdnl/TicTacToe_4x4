@@ -20,34 +20,34 @@ It also enhanced my proficiency in Java and mobile app development.
 
 ## Screenshot of the TicTacToe Game Application
 
-![loginpage](https://github.com/user-attachments/assets/2552c3af-f873-4d3d-b22e-cb81a9d1bc2b)
+![loginpage](https://github.com/user-attachments/assets/f7ea87d1-bc03-42cf-815a-90e19f875e97)
 - Login Page
 
-![signuppage](https://github.com/user-attachments/assets/2d82102f-6f94-43e7-a180-bb08eb2e7d49)
+![signuppage](https://github.com/user-attachments/assets/a93307cc-8ff6-4ab7-ab0d-d0c814418b03)
 - Sign Up Page
 
-![homepage](https://github.com/user-attachments/assets/f7c91faa-c161-45e9-b198-732ba7a41235)
+![homepage](https://github.com/user-attachments/assets/3339466b-4630-4415-aee6-dd5dc2eada0e)
 - Home Page
 
-![addplayerspage](https://github.com/user-attachments/assets/964cd34e-8c1d-4cd7-bf4d-3fb76b203c41)
+![addplayerspage](https://github.com/user-attachments/assets/778350f7-82ce-4a36-8d53-8e484dbef518)
 - Add Player’s Page
 
-![tictactoepage](https://github.com/user-attachments/assets/d0614d2d-50b5-433a-b256-5389affdb360)
+![tictactoepage](https://github.com/user-attachments/assets/12579802-de4d-4102-906f-b211b1818eb8)
 - TicTacToe Game Page
 
-![leaderboardpage](https://github.com/user-attachments/assets/62b5b8e3-6b98-4f6b-8a64-62229fde7b4a)
+![leaderboardpage](https://github.com/user-attachments/assets/f63dfdcd-ca3e-4b06-8fe9-a808eef46c4a)
 - Leaderboard Page
 
-![chartpage](https://github.com/user-attachments/assets/d01e1c13-cfd0-43fb-993e-3a961a8c8f27)
+![chartpage](https://github.com/user-attachments/assets/a569f676-cb32-43ce-9a57-abc539db66d7)
 - Chart Page
   
-![recordtablepage](https://github.com/user-attachments/assets/8204dabe-020f-4edf-9984-f3b8e1125413)
+![recordtablepage](https://github.com/user-attachments/assets/4c90f929-2eab-47c8-9701-7423630bb9a9)
 - Record Table Page
   
-![userprofilepage](https://github.com/user-attachments/assets/a88bf2e4-003f-4f3b-8bee-8f74c576d0d4)
+![userprofilepage](https://github.com/user-attachments/assets/efc49d0d-e147-4c19-9965-6c9ebf06b005)
 - User Profile Page
   
-![editprofilepage](https://github.com/user-attachments/assets/834a68dc-ac1f-44ac-a4f7-64aa00148a0a)
+![editprofilepage](https://github.com/user-attachments/assets/b0748af3-717f-407f-8a7f-c0b1570c37ea)
 - Edit Profile Page
 
 ### Demo of the Application 
