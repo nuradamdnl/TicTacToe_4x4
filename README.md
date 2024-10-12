@@ -4,6 +4,8 @@ Project Overview: During my 5th semester, my colleagues and I developed a TicTac
 This mobile and desktop-compatible application allowed users to play a classic 4x4 grid TicTacToe game, with the option of Player vs Player mode. 
 Additionally, the game integrated user account management and statistical reports.
 
+Technologies used : Android Studio, Java, XML, SQLite
+
 Key Features:
 
 Game Development: Created a TicTacToe game with a 4x4 grid, where players take turns marking spaces until one achieves three consecutive marks (horizontally, vertically, or diagonally).
