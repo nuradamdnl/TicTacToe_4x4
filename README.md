@@ -1,6 +1,6 @@
 # TicTacToe Game Application
 
-Project Overview: During my 5th semester, my colleagues and I developed a TicTacToe Game Application using Android Studio and Java. 
+Project Overview: During my 5th semester of Degree, my colleagues and I developed a TicTacToe Game Application using Android Studio and Java. 
 This mobile and desktop-compatible application allowed users to play a classic 4x4 grid TicTacToe game, with the option of Player vs Player mode. 
 Additionally, the game integrated user account management and statistical reports.
 
