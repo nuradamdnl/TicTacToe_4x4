@@ -1,26 +1,77 @@
-# TicTacToe Game Application
+# TicTacToe Game Application  🎮
 
-Project Overview: During my 5th semester of Degree, my colleagues and I developed a TicTacToe Game Application using Android Studio and Java. 
-This mobile and desktop-compatible application allowed users to play a classic 4x4 grid TicTacToe game, with the option of Player vs Player mode. 
-Additionally, the game integrated user account management and statistical reports.
+**A mobile-friendly 4×4 Tic-Tac-Toe game** featuring *player authentication*, *database-powered CRUD*, and *game stats with charts* — all built with Android Studio and Java.
 
-Technologies used : Android Studio, Java, XML, SQLite
+---
 
-Key Features:
+## What It Is
 
-Game Development: Created a TicTacToe game with a 4x4 grid, where players take turns marking spaces until one achieves three consecutive marks (horizontally, vertically, or diagonally).
+A polished Tic-Tac-Toe game built during your 5th semester, designed for both **mobile and desktop**. It enhances the classic 4×4 grid gameplay with:
 
-User Authentication: Implemented sign-up and sign-in functionality using SQLite database to store player data locally, ensuring secure access with usernames and passwords.
+* **4×4 board** gameplay — win by lining up three marks in a row.
+* **SQLite-based user auth** — register and log in securely.
+* **CRUD capability** — manage player profiles (Create, Read, Update, Delete, Search).
+* **Visual stats** — view win/draw/loss data in pie and bar charts.
 
-CRUD Operations: Enabled full CRUDS operations (Insert, View, Update, Delete, Search) for managing player information, allowing the host to control player data effectively.
+---
 
-Player Statistics & Reporting: Integrated graphical reports in the form of pie charts and bar charts. Points were calculated based on the outcome: 3 points for a win, 1 point for a draw, and 0 for a loss.
+## Technologies Used
 
-This project helped me improve my Android development skills, strengthen my understanding of database management (SQLite), and learn how to generate graphical reports to visualize data. 
-It also enhanced my proficiency in Java and mobile app development.
+* **Android Studio** — your development environment.
+* **Java & XML** — the core language and UI layout.
+* **SQLite** — stores users and game results.
+* **Charts (Pie & Bar)** — visualizes player statistics.
 
+---
 
-## Screenshot of the TicTacToe Game Application
+## Core Features
+
+* **🎨 4×4 TicTacToe Gameplay**
+  Turn-based game UI, win with three in a row (horizontal, vertical, diagonal).
+
+* **🔒 User Authentication**
+  Sign up and log in with secure credentials stored in SQLite.
+
+* **🛠 Player Profile Management**
+  Full CRUD: Add, view, edit, delete, and search player accounts.
+
+* **📊 Statistical Reporting**
+  Dynamic charts that break down performance:
+
+  * **3 points** for a win
+  * **1 point** for a draw
+  * **0 points** for a loss
+
+---
+
+## How to Use It
+
+1. Clone this repo to your machine.
+2. Open the project in **Android Studio**.
+3. Build and run on an emulator or Android device.
+4. Navigate through:
+
+   * **Login / Signup** screens
+   * **Home screen** to manage players or start games
+   * **TicTacToe board** with gameplay interface
+   * **Leaderboard & charts** to view stats
+
+---
+
+## Why It Matters
+
+This project sharpened your skills in:
+
+* Full **Android development** — from UI design to backend logic
+* **SQLite database handling** — user storage and queries
+* **Data visualization** — displaying meaningful stats dynamically
+* Overall proficiency in **Java programming** and UX flow design
+
+---
+
+## 📸 Screenshot Gallery
+
+Here’s a preview of the app in action:
 
 ![loginpage](https://github.com/user-attachments/assets/f7ea87d1-bc03-42cf-815a-90e19f875e97)
 - Login Page
@@ -52,6 +103,8 @@ It also enhanced my proficiency in Java and mobile app development.
 ![editprofilepage](https://github.com/user-attachments/assets/b0748af3-717f-407f-8a7f-c0b1570c37ea)
 - Edit Profile Page
 
-### Demo of the Application 
+---
 
-https://drive.google.com/file/d/1EniAoyTWQ3NJLATIYL-nEvio7_qRc_n6/view 
+## Topics
+
+`android` `java` `sqlite` `crud` `authentication` `gamedev` `mobileapp` `tictactoe` `data-visualization`
