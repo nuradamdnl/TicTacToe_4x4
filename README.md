@@ -107,4 +107,4 @@ Here’s a preview of the app in action:
 
 ## Topics
 
-`android` `java` `sqlite` `crud` `authentication` `gamedev` `mobileapp` `tictactoe` `data-visualization`
+`android` `android-studio` `java` `sqlite` `tictactoe` `user-authentication` `crud` `data-visualization` `educational`
