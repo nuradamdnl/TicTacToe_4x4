@@ -6,7 +6,7 @@
 
 ## What It Is
 
-A polished Tic-Tac-Toe game built during your 5th semester, designed for both **mobile and desktop**. It enhances the classic 4×4 grid gameplay with:
+A polished Tic-Tac-Toe game built and designed mobile. It enhances the classic 4×4 grid gameplay with:
 
 * **4×4 board** gameplay — win by lining up three marks in a row.
 * **SQLite-based user auth** — register and log in securely.
@@ -17,7 +17,7 @@ A polished Tic-Tac-Toe game built during your 5th semester, designed for both **
 
 ## Technologies Used
 
-* **Android Studio** — your development environment.
+* **Android Studio** — the development environment.
 * **Java & XML** — the core language and UI layout.
 * **SQLite** — stores users and game results.
 * **Charts (Pie & Bar)** — visualizes player statistics.
